@@ -1,6 +1,11 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+//for libraries you don't need add .js like above examples but for files you need add .js
+import authRoute from "./routes/auth.js";
+import userRoute from "./routes/users.js";
+import hotelsRoute from "./routes/hotels.js";
+import roomsRoute from "./routes/rooms.js";
 // to using import express you need to add 'type':"module" to package.json in this case we can use ES6 modules like import and export
 
 //In Node.js, express is a popular web framework used for building server-side applications. The const app = express() code creates an instance of the express application which can be used to handle HTTP requests and responses.Once you have created an instance of the express application, you can begin to define routes, middleware, and other functionality required by your application. For example, you might define a route that handles GET requests to the root URL /:
@@ -25,11 +30,12 @@ mongoose.connection.on("disconnected", () => {
   process.exit(1);
 });
 
-// mongoose.connection.on("connected", () => {
-//   console.log("mongoDB connected!");
-//   // process.exit(1);
-//   // process.exit(1);
-// });
+// Middlewares
+// this code mean when you visit this endpoint i'm gonnas say use authRoute
+app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
+app.use("/api/hotels", hotelsRoute);
+app.use("/api/rooms", roomsRoute);
 
 // to run our app we need to listen to any port
 
