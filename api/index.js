@@ -11,12 +11,12 @@ import roomsRoute from "./routes/rooms.js";
 //In Node.js, express is a popular web framework used for building server-side applications. The const app = express() code creates an instance of the express application which can be used to handle HTTP requests and responses.Once you have created an instance of the express application, you can begin to define routes, middleware, and other functionality required by your application. For example, you might define a route that handles GET requests to the root URL /:
 const app = express();
 dotenv.config();
-const port = process.env.PORT || 8900;
+const port = process.env.PORT || 5500;
 const connectToDb = async () => {
   try {
     await mongoose.connect(process.env.MONGO, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      // useNewUrlParser: true,
+      // useUnifiedTopology: true,
     });
     console.log("Connected to mongoDB.");
   } catch (error) {
@@ -31,6 +31,7 @@ mongoose.connection.on("disconnected", () => {
 });
 
 // Middlewares
+app.use(express.json());
 // this code mean when you visit this endpoint i'm gonnas say use authRoute
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
