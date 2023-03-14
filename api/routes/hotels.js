@@ -19,6 +19,16 @@ router.post("/", async (req, res) => {
 });
 
 // UPDATE
+router.put("/", async (req, res) => {
+  try {
+    const updateHotel = await newHotel.save();
+    res.status(200).json(savedHotel);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// DELETE
 
 // GET
 
